@@ -1,11 +1,9 @@
 # Portfólio de Projetos
 
 ## Descrição do Projeto
-Este projeto é um portfólio desenvolvido em Next.js para apresentar trabalhos, experiências e habilidades dos alunos. O objetivo é criar uma plataforma moderna, responsiva e de fácil navegação, destacando os principais projetos e informações relevantes.
+Este projeto é um portfólio desenvolvido em Next.js para apresentar trabalhos, experiências e habilidades do aluno. O objetivo é criar uma plataforma moderna, responsiva e de fácil navegação, destacando os principais projetos e informações relevantes.
 
 ## Protótipos
-Imagens dos protótipos do site
-
 Sobre mim:
 ![1-sobre](https://github.com/user-attachments/assets/c0b39688-d43c-46cc-950c-1fbe5596f44e)
 
