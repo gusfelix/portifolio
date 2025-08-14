@@ -5,6 +5,10 @@ Este projeto é um portfólio desenvolvido em Next.js para apresentar trabalhos,
 
 ## Protótipos
 Imagens dos protótipos do site:
+![1-sobre](https://github.com/user-attachments/assets/c0b39688-d43c-46cc-950c-1fbe5596f44e)
+![2-projetos](https://github.com/user-attachments/assets/ab44cbe0-fe0e-4d79-9fc6-aacb7d3b85e5)
+![3-experiencias](https://github.com/user-attachments/assets/192ad6d4-cc45-4f2b-9c10-a1ad81fa58ba)
+![4-contato](https://github.com/user-attachments/assets/d344790c-7c15-49a4-a766-dd3fd001e187)
 
 
 ## Tecnologias
