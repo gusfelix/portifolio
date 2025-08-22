@@ -1,15 +1,7 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { useState, useEffect } from "react";
 import {
-  Menu,
-  X,
   ChevronUp,
   Mail,
   Phone,
@@ -18,184 +10,71 @@ import {
   ExternalLink,
   MapPin,
   Calendar,
-  User,
   Code,
   Briefcase,
-  MessageCircle,
-} from "lucide-react"
+} from "lucide-react";
 
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { portfolioData } from "@/utils/constants";
+import Header from "@/components/Header";
 export default function Portfolio() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState("sobre")
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("sobre");
 
   // Scroll suave para seções
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-      setIsMenuOpen(false)
+      element.scrollIntoView({ behavior: "smooth" });
+      setIsMenuOpen(false);
     }
-  }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["sobre", "projetos", "experiencias", "contato"]
-      const scrollPosition = window.scrollY + 100
+      const sections = ["sobre", "projetos", "experiencias", "contato"];
+      const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
-        const element = document.getElementById(section)
+        const element = document.getElementById(section);
         if (element) {
-          const offsetTop = element.offsetTop
-          const offsetHeight = element.offsetHeight
+          const offsetTop = element.offsetTop;
+          const offsetHeight = element.offsetHeight;
 
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section)
-            break
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
+            setActiveSection(section);
+            break;
           }
         }
       }
-    }
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  // Dados do portfólio
-  const portfolioData = {
-    nome: "Nome",
-    cargo: "Desenvolvedor",
-    bio: { 
-      pt: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus optio aperiam quibusdam quae consequatur quo labore est, ab harum quaerat libero aspernatur cupiditate.",
-      en: "Voluptatum beatae quae commodi odit ab qui at amet nam. Corporis quis eveniet temporibus reiciendis iusto iure minus recusandae, illum id, velit quisquam?",
-    },
-    formacao: "Bacharelado em Engenharia de Software",
-    atuacao: "Desenvolvimento",
-    interesses: ["React", "Node.js", "TypeScript", "Python"],
-    objetivos: "Busco oportunidades para aplicar minhas habilidades em projetos desafiadores e inovadores.",
-    projetos: [
-      {
-        id: 1,
-        nome: "Projeto 1",
-        descricao: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus optio aperiam quibusdam quae consequatur quo labore est.",
-        tecnologias: ["React", "Node.js", "PostgreSQL", "Stripe"],
-        github: "https://github.com/usuario/projeto1",
-        imagem: "/projeto1.png",
-      },
-      {
-        id: 2,
-        nome: "Projeto 2",
-        descricao: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus optio aperiam quibusdam quae consequatur quo labore est.",
-        tecnologias: ["Next.js", "TypeScript", "Prisma", "Socket.io"],
-        github: "https://github.com/usuario/projeto2",
-        imagem: "/projeto2.png",
-      },
-      {
-        id: 3,
-        nome: "Projeto 3",
-        descricao: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus optio aperiam quibusdam quae consequatur quo labore est.",
-        tecnologias: ["Vue.js", "Express", "MongoDB", "Chart.js"],
-        github: "https://github.com/usuario/projeto3",
-        imagem: "/projeto3.png",
-      },
-    ],
-    experiencias: [
-      {
-        empresa: "Empresa 3",
-        cargo: "Desenvolvedor Full Stack",
-        periodo: "jul/2024 - Presente",
-        descricao:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus optio aperiam quibusdam quae consequatur quo labore est.",
-      },
-      {
-        empresa: "Empresa 2",
-        cargo: "Desenvolvedor Frontend",
-        periodo: "jan/2024 - jun/2024",
-        descricao:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus optio aperiam quibusdam quae consequatur quo labore est.",
-      },
-      {
-        empresa: "Empresa 1",
-        cargo: "Desenvolvedor Web",
-        periodo: "abr/2023 - dez/2023",
-        descricao:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus optio aperiam quibusdam quae consequatur quo labore est.",
-      },
-    ],
-  }
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Header */}
-      <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-slate-200 z-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <button
-              onClick={() => scrollToSection("sobre")}
-              className="text-2xl font-bold text-emerald-600 hover:text-emerald-700 transition-colors"
-            >
-              {portfolioData.nome.split(" ")[0]}
-            </button>
-
-            {/* Menu Desktop */}
-            <nav className="hidden md:flex space-x-8">
-              {[
-                { id: "sobre", label: "Sobre Mim", icon: User },
-                { id: "projetos", label: "Projetos", icon: Code },
-                { id: "experiencias", label: "Experiências", icon: Briefcase },
-                { id: "contato", label: "Contato", icon: MessageCircle },
-              ].map(({ id, label, icon: Icon }) => (
-                <button
-                  key={id}
-                  onClick={() => scrollToSection(id)}
-                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors ${
-                    activeSection === id
-                      ? "text-emerald-600 bg-emerald-50"
-                      : "text-slate-600 hover:text-emerald-600 hover:bg-slate-50"
-                  }`}
-                >
-                  <Icon size={18} />
-                  <span>{label}</span>
-                </button>
-              ))}
-            </nav>
-
-            {/* Menu Mobile */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors"
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-
-          {isMenuOpen && (
-            <div className="md:hidden py-4 border-t border-slate-200">
-              <nav className="flex flex-col space-y-2">
-                {[
-                  { id: "sobre", label: "Sobre Mim", icon: User },
-                  { id: "projetos", label: "Projetos", icon: Code },
-                  { id: "experiencias", label: "Experiências", icon: Briefcase },
-                  { id: "contato", label: "Contato", icon: MessageCircle },
-                ].map(({ id, label, icon: Icon }) => (
-                  <button
-                    key={id}
-                    onClick={() => scrollToSection(id)}
-                    className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors text-left ${
-                      activeSection === id
-                        ? "text-emerald-600 bg-emerald-50"
-                        : "text-slate-600 hover:text-emerald-600 hover:bg-slate-50"
-                    }`}
-                  >
-                    <Icon size={20} />
-                    <span>{label}</span>
-                  </button>
-                ))}
-              </nav>
-            </div>
-          )}
-        </div>
-      </header>
+      <Header
+        activeSection={activeSection}
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+        scrollToSection={scrollToSection}
+      />
 
       {/* Main */}
       <main className="pt-16">
@@ -215,20 +94,32 @@ export default function Portfolio() {
                     </AvatarFallback>
                   </Avatar>
                   <div>
-                    <h1 className="text-4xl font-bold text-slate-900">{portfolioData.nome}</h1>
-                    <p className="text-xl text-emerald-600 font-medium">{portfolioData.cargo}</p>
+                    <h1 className="text-4xl font-bold text-slate-900">
+                      {portfolioData.nome}
+                    </h1>
+                    <p className="text-xl text-emerald-600 font-medium">
+                      {portfolioData.cargo}
+                    </p>
                   </div>
                 </div>
 
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-lg font-semibold text-slate-900 mb-2">Sobre mim (Português)</h3>
-                    <p className="text-slate-600 leading-relaxed">{portfolioData.bio.pt}</p>
+                    <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                      Sobre mim (Português)
+                    </h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      {portfolioData.bio.pt}
+                    </p>
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-semibold text-slate-900 mb-2">About me (English)</h3>
-                    <p className="text-slate-600 leading-relaxed">{portfolioData.bio.en}</p>
+                    <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                      About me (English)
+                    </h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      {portfolioData.bio.en}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -236,32 +127,46 @@ export default function Portfolio() {
               <div className="fade-in">
                 <Card className="hover-scale">
                   <CardHeader>
-                    <CardTitle className="text-emerald-600">Informações Profissionais</CardTitle>
+                    <CardTitle className="text-emerald-600">
+                      Informações Profissionais
+                    </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="flex items-start space-x-3">
                       <MapPin className="text-emerald-600 mt-1" size={18} />
                       <div>
                         <p className="font-medium text-slate-900">Formação</p>
-                        <p className="text-slate-600">{portfolioData.formacao}</p>
+                        <p className="text-slate-600">
+                          {portfolioData.formacao}
+                        </p>
                       </div>
                     </div>
 
                     <div className="flex items-start space-x-3">
                       <Briefcase className="text-emerald-600 mt-1" size={18} />
                       <div>
-                        <p className="font-medium text-slate-900">Área de Atuação</p>
-                        <p className="text-slate-600">{portfolioData.atuacao}</p>
+                        <p className="font-medium text-slate-900">
+                          Área de Atuação
+                        </p>
+                        <p className="text-slate-600">
+                          {portfolioData.atuacao}
+                        </p>
                       </div>
                     </div>
 
                     <div className="flex items-start space-x-3">
                       <Code className="text-emerald-600 mt-1" size={18} />
                       <div>
-                        <p className="font-medium text-slate-900 mb-2">Interesses</p>
+                        <p className="font-medium text-slate-900 mb-2">
+                          Interesses
+                        </p>
                         <div className="flex flex-wrap gap-2">
                           {portfolioData.interesses.map((interesse, index) => (
-                            <Badge key={index} variant="secondary" className="bg-emerald-50 text-emerald-700">
+                            <Badge
+                              key={index}
+                              variant="secondary"
+                              className="bg-emerald-50 text-emerald-700"
+                            >
                               {interesse}
                             </Badge>
                           ))}
@@ -270,7 +175,9 @@ export default function Portfolio() {
                     </div>
 
                     <div className="pt-4 border-t border-slate-200">
-                      <p className="text-slate-600 leading-relaxed">{portfolioData.objetivos}</p>
+                      <p className="text-slate-600 leading-relaxed">
+                        {portfolioData.objetivos}
+                      </p>
                     </div>
                   </CardContent>
                 </Card>
@@ -283,9 +190,12 @@ export default function Portfolio() {
         <section id="projetos" className="py-20 bg-slate-50">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16 fade-in">
-              <h2 className="text-4xl font-bold text-slate-900 mb-4">Projetos</h2>
+              <h2 className="text-4xl font-bold text-slate-900 mb-4">
+                Projetos
+              </h2>
               <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-                Alguns dos projetos que já desenvolvi durante toda minha jornada como desenvolvedor.
+                Alguns dos projetos que já desenvolvi durante toda minha jornada
+                como desenvolvedor.
               </p>
             </div>
 
@@ -297,7 +207,9 @@ export default function Portfolio() {
                 {portfolioData.projetos.map((projeto, index) => (
                   <div
                     key={projeto.id}
-                    className={`flex items-center ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} flex-col lg:space-x-8`}
+                    className={`flex items-center ${
+                      index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+                    } flex-col lg:space-x-8`}
                   >
                     <div className="lg:w-1/2 mb-8 lg:mb-0">
                       <Card className="hover-scale">
@@ -309,13 +221,19 @@ export default function Portfolio() {
                           />
                         </div>
                         <CardHeader>
-                          <CardTitle className="text-emerald-600">{projeto.nome}</CardTitle>
+                          <CardTitle className="text-emerald-600">
+                            {projeto.nome}
+                          </CardTitle>
                           <CardDescription>{projeto.descricao}</CardDescription>
                         </CardHeader>
                         <CardContent>
                           <div className="flex flex-wrap gap-2 mb-4">
                             {projeto.tecnologias.map((tech, techIndex) => (
-                              <Badge key={techIndex} variant="outline" className="border-emerald-200 text-emerald-700">
+                              <Badge
+                                key={techIndex}
+                                variant="outline"
+                                className="border-emerald-200 text-emerald-700"
+                              >
                                 {tech}
                               </Badge>
                             ))}
@@ -323,7 +241,9 @@ export default function Portfolio() {
                           <Button
                             variant="outline"
                             className="w-full border-emerald-200 text-emerald-600 hover:bg-emerald-50 bg-transparent"
-                            onClick={() => window.open(projeto.github, "_blank")}
+                            onClick={() =>
+                              window.open(projeto.github, "_blank")
+                            }
                           >
                             <Github size={18} className="mr-2" />
                             Ver no GitHub
@@ -348,7 +268,9 @@ export default function Portfolio() {
         <section id="experiencias" className="py-20 bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16 fade-in">
-              <h2 className="text-4xl font-bold text-slate-900 mb-4">Experiências</h2>
+              <h2 className="text-4xl font-bold text-slate-900 mb-4">
+                Experiências
+              </h2>
               <p className="text-xl text-slate-600 max-w-2xl mx-auto">
                 Minha trajetória ao longo da carreira como desenvolvedor.
               </p>
@@ -360,13 +282,21 @@ export default function Portfolio() {
                   <CardHeader>
                     <div className="flex items-center space-x-2 mb-2">
                       <Calendar className="text-emerald-600" size={18} />
-                      <span className="text-sm font-medium text-emerald-600">{exp.periodo}</span>
+                      <span className="text-sm font-medium text-emerald-600">
+                        {exp.periodo}
+                      </span>
                     </div>
-                    <CardTitle className="text-slate-900">{exp.empresa}</CardTitle>
-                    <CardDescription className="text-lg font-medium text-slate-700">{exp.cargo}</CardDescription>
+                    <CardTitle className="text-slate-900">
+                      {exp.empresa}
+                    </CardTitle>
+                    <CardDescription className="text-lg font-medium text-slate-700">
+                      {exp.cargo}
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-slate-600 leading-relaxed">{exp.descricao}</p>
+                    <p className="text-slate-600 leading-relaxed">
+                      {exp.descricao}
+                    </p>
                   </CardContent>
                 </Card>
               ))}
@@ -378,16 +308,21 @@ export default function Portfolio() {
         <section id="contato" className="py-20 bg-slate-50">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16 fade-in">
-              <h2 className="text-4xl font-bold text-slate-900 mb-4">Contato</h2>
+              <h2 className="text-4xl font-bold text-slate-900 mb-4">
+                Contato
+              </h2>
               <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-                Vamos conversar! Estou sempre aberto a novas oportunidades e colaborações.
+                Vamos conversar! Estou sempre aberto a novas oportunidades e
+                colaborações.
               </p>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-12">
               {/* Links de contato */}
               <div className="fade-in">
-                <h3 className="text-2xl font-bold text-slate-900 mb-8">Entre em contato</h3>
+                <h3 className="text-2xl font-bold text-slate-900 mb-8">
+                  Entre em contato
+                </h3>
                 <div className="space-y-6">
                   <a
                     href="mailto:email@exemplo.com"
@@ -428,7 +363,9 @@ export default function Portfolio() {
                     </div>
                     <div>
                       <p className="font-medium text-slate-900">LinkedIn</p>
-                      <p className="text-slate-600">linkedin.com/in/seu-perfil</p>
+                      <p className="text-slate-600">
+                        linkedin.com/in/seu-perfil
+                      </p>
                     </div>
                   </a>
                 </div>
@@ -438,13 +375,23 @@ export default function Portfolio() {
               <div className="fade-in">
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-emerald-600">Envie uma mensagem</CardTitle>
-                    <CardDescription>Preencha o formulário e entrarei em contato em breve.</CardDescription>
+                    <CardTitle className="text-emerald-600">
+                      Envie uma mensagem
+                    </CardTitle>
+                    <CardDescription>
+                      Preencha o formulário e entrarei em contato em breve.
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                    <form
+                      className="space-y-6"
+                      onSubmit={(e) => e.preventDefault()}
+                    >
                       <div>
-                        <label htmlFor="nome" className="block text-sm font-medium text-slate-700 mb-2">
+                        <label
+                          htmlFor="nome"
+                          className="block text-sm font-medium text-slate-700 mb-2"
+                        >
                           Nome completo
                         </label>
                         <Input
@@ -455,7 +402,10 @@ export default function Portfolio() {
                       </div>
 
                       <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
+                        <label
+                          htmlFor="email"
+                          className="block text-sm font-medium text-slate-700 mb-2"
+                        >
                           E-mail
                         </label>
                         <Input
@@ -467,7 +417,10 @@ export default function Portfolio() {
                       </div>
 
                       <div>
-                        <label htmlFor="mensagem" className="block text-sm font-medium text-slate-700 mb-2">
+                        <label
+                          htmlFor="mensagem"
+                          className="block text-sm font-medium text-slate-700 mb-2"
+                        >
                           Mensagem
                         </label>
                         <Textarea
@@ -478,7 +431,10 @@ export default function Portfolio() {
                         />
                       </div>
 
-                      <Button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
+                      <Button
+                        type="submit"
+                        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+                      >
                         <Mail size={18} className="mr-2" />
                         Enviar mensagem
                       </Button>
@@ -496,7 +452,9 @@ export default function Portfolio() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-center md:text-left">
-              <p className="text-slate-300">© 2025 {portfolioData.nome}. Todos os direitos reservados.</p>
+              <p className="text-slate-300">
+                © 2025 {portfolioData.nome}. Todos os direitos reservados.
+              </p>
             </div>
 
             <div className="flex items-center space-x-6">
@@ -535,5 +493,5 @@ export default function Portfolio() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
