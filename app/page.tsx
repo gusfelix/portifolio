@@ -193,18 +193,25 @@ export default function Portfolio() {
 
             {/* timeline */}
             <div className="relative">
+              {/* linha central */}
               <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-primary/20 h-full hidden lg:block"></div>
 
-              <div className="space-y-12">
+              <div className="space-y-16">
                 {portfolioData.projetos.map((projeto, index) => (
                   <div
                     key={projeto.id}
-                    className={`flex items-center ${
-                      index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-                    } flex-col lg:space-x-8`}
+                    className="grid lg:grid-cols-2 gap-8 items-center relative"
                   >
-                    <div className="lg:w-1/2 mb-8 lg:mb-0">
-                      <Card className="hover-scale">
+                    {/* esquerda */}
+                    <div
+                      className={`${
+                        index % 2 === 0 ? "order-1" : "order-2"
+                      } flex`}
+                      style={{
+                        justifyContent: index % 2 === 0 ? "left" : "right",
+                      }}
+                    >
+                      <Card className="w-full max-w-lg hover-scale">
                         <div className="aspect-video overflow-hidden rounded-t-lg">
                           <img
                             src={projeto.imagem || "/placeholder.svg"}
@@ -245,8 +252,15 @@ export default function Portfolio() {
                       </Card>
                     </div>
 
-                    <div className="hidden lg:block w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg z-10"></div>
-                    <div className="lg:w-1/2"></div>
+                    {/* bolinha central */}
+                    <div className="hidden lg:flex absolute left-1/2 transform -translate-x-1/2">
+                      <div className="w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg"></div>
+                    </div>
+
+                    {/* direita (espaçador) */}
+                    <div
+                      className={`${index % 2 === 0 ? "order-2" : "order-1"}`}
+                    ></div>
                   </div>
                 ))}
               </div>
