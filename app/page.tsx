@@ -1,4 +1,5 @@
 "use client";
+import "@/i18n";
 
 import { useState, useEffect } from "react";
 import {
@@ -13,6 +14,7 @@ import {
   Code,
   Briefcase,
 } from "lucide-react";
+import { useTranslation } from "next-i18next";
 
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
@@ -27,11 +29,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { portfolioData } from "@/utils/constants";
+import projectImages from "@/public/data/projectImages";
+import projectGithubLinks from "@/public/data/projectGithubLinks";
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("sobre");
+  const { t } = useTranslation("common");
 
   // Scroll suave
   const scrollToSection = (sectionId: string) => {
@@ -68,6 +72,10 @@ export default function Portfolio() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const interests = t("portfolio.interests", { returnObjects: true }) as string[];
+  const projects = t("portfolio.projects", { returnObjects: true }) as any[];
+  const experiences = t("portfolio.experiences", { returnObjects: true }) as any[];
+
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors">
       <Header
@@ -87,16 +95,16 @@ export default function Portfolio() {
                   <Avatar className="w-20 h-20">
                     <AvatarImage src="/professional-headshot.png" />
                     <AvatarFallback className="text-2xl bg-primary/10 text-primary">
-                      {portfolioData.nome
+                      {t("portfolio.name")
                         .split(" ")
                         .map((n) => n[0])
                         .join("")}
                     </AvatarFallback>
                   </Avatar>
                   <div>
-                    <h1 className="text-4xl font-bold">{portfolioData.nome}</h1>
+                    <h1 className="text-4xl font-bold">{t("portfolio.name")}</h1>
                     <p className="text-xl text-primary font-medium">
-                      {portfolioData.cargo}
+                      {t("portfolio.role")}
                     </p>
                   </div>
                 </div>
@@ -104,19 +112,10 @@ export default function Portfolio() {
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-lg font-semibold mb-2">
-                      Sobre mim (Português)
+                      {t("page.about_title")}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      {portfolioData.bio.pt}
-                    </p>
-                  </div>
-
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2">
-                      About me (English)
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {portfolioData.bio.en}
+                      {t("portfolio.bio")}
                     </p>
                   </div>
                 </div>
@@ -126,16 +125,16 @@ export default function Portfolio() {
                 <Card className="hover-scale">
                   <CardHeader>
                     <CardTitle className="text-primary">
-                      Informações Profissionais
+                      {t("page.professional_info")}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="flex items-start space-x-3">
                       <MapPin className="text-primary mt-1" size={18} />
                       <div>
-                        <p className="font-medium">Formação</p>
+                        <p className="font-medium">{t("portfolio.education_label")}</p>
                         <p className="text-muted-foreground">
-                          {portfolioData.formacao}
+                          {t("portfolio.education")}
                         </p>
                       </div>
                     </div>
@@ -143,9 +142,9 @@ export default function Portfolio() {
                     <div className="flex items-start space-x-3">
                       <Briefcase className="text-primary mt-1" size={18} />
                       <div>
-                        <p className="font-medium">Área de Atuação</p>
+                        <p className="font-medium">{t("portfolio.area_label")}</p>
                         <p className="text-muted-foreground">
-                          {portfolioData.atuacao}
+                          {t("portfolio.area")}
                         </p>
                       </div>
                     </div>
@@ -153,15 +152,15 @@ export default function Portfolio() {
                     <div className="flex items-start space-x-3">
                       <Code className="text-primary mt-1" size={18} />
                       <div>
-                        <p className="font-medium mb-2">Interesses</p>
+                        <p className="font-medium mb-2">{t("portfolio.interests_label")}</p>
                         <div className="flex flex-wrap gap-2">
-                          {portfolioData.interesses.map((interesse, index) => (
+                          {interests.map((interest, index) => (
                             <Badge
                               key={index}
                               variant="secondary"
                               className="bg-primary/10 text-primary"
                             >
-                              {interesse}
+                              {interest}
                             </Badge>
                           ))}
                         </div>
@@ -170,7 +169,7 @@ export default function Portfolio() {
 
                     <div className="pt-4 border-t border-border">
                       <p className="text-muted-foreground leading-relaxed">
-                        {portfolioData.objetivos}
+                        {t("portfolio.objectives")}
                       </p>
                     </div>
                   </CardContent>
@@ -184,10 +183,11 @@ export default function Portfolio() {
         <section id="projetos" className="py-20 bg-background">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16 fade-in">
-              <h2 className="text-4xl font-bold mb-4">Projetos</h2>
+              <h2 className="text-4xl font-bold mb-4">
+                {t("page.projects_title")}
+              </h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Alguns dos projetos que já desenvolvi durante minha jornada como
-                dev.
+                {t("page.projects_description")}
               </p>
             </div>
 
@@ -197,37 +197,31 @@ export default function Portfolio() {
               <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-primary/20 h-full hidden lg:block"></div>
 
               <div className="space-y-16">
-                {portfolioData.projetos.map((projeto, index) => (
+                {projects.map((project, index) => (
                   <div
-                    key={projeto.id}
+                    key={project.id}
                     className="grid lg:grid-cols-2 gap-8 items-center relative"
                   >
                     {/* esquerda */}
                     <div
-                      className={`${
-                        index % 2 === 0 ? "order-1" : "order-2"
-                      } flex`}
-                      style={{
-                        justifyContent: index % 2 === 0 ? "left" : "right",
-                      }}
+                      className={`${index % 2 === 0 ? "order-1" : "order-2"} flex`}
+                      style={{ justifyContent: index % 2 === 0 ? "left" : "right" }}
                     >
                       <Card className="w-full max-w-lg hover-scale">
                         <div className="aspect-video overflow-hidden rounded-t-lg">
                           <img
-                            src={projeto.imagem || "/placeholder.svg"}
-                            alt={projeto.nome}
+                            src={projectImages[project.id] || "/placeholder.svg"}
+                            alt={project.name}
                             className="w-full h-full object-cover"
                           />
                         </div>
                         <CardHeader>
-                          <CardTitle className="text-primary">
-                            {projeto.nome}
-                          </CardTitle>
-                          <CardDescription>{projeto.descricao}</CardDescription>
+                          <CardTitle className="text-primary">{project.name}</CardTitle>
+                          <CardDescription>{project.description}</CardDescription>
                         </CardHeader>
                         <CardContent>
                           <div className="flex flex-wrap gap-2 mb-4">
-                            {projeto.tecnologias.map((tech, i) => (
+                            {project.technologies.map((tech: string, i: number) => (
                               <Badge
                                 key={i}
                                 variant="outline"
@@ -240,9 +234,7 @@ export default function Portfolio() {
                           <Button
                             variant="outline"
                             className="w-full border-primary/30 text-primary hover:bg-primary/10"
-                            onClick={() =>
-                              window.open(projeto.github, "_blank")
-                            }
+                            onClick={() => window.open(projectGithubLinks[project.id], "_blank")}
                           >
                             <Github size={18} className="mr-2" />
                             Ver no GitHub
@@ -275,30 +267,32 @@ export default function Portfolio() {
         >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16 fade-in">
-              <h2 className="text-4xl font-bold mb-4">Experiências</h2>
+              <h2 className="text-4xl font-bold mb-4">
+                {t("page.experiences_title")}
+              </h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Minha trajetória ao longo da carreira.
+                {t("page.experiences_description")}
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {portfolioData.experiencias.map((exp, i) => (
+              {experiences.map((exp, i) => (
                 <Card key={i} className="hover-scale">
                   <CardHeader>
                     <div className="flex items-center space-x-2 mb-2">
                       <Calendar className="text-primary" size={18} />
                       <span className="text-sm font-medium text-primary">
-                        {exp.periodo}
+                        {exp.period}
                       </span>
                     </div>
-                    <CardTitle>{exp.empresa}</CardTitle>
+                    <CardTitle>{exp.company}</CardTitle>
                     <CardDescription className="text-lg font-medium">
-                      {exp.cargo}
+                      {exp.role}
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground leading-relaxed">
-                      {exp.descricao}
+                      {exp.description}
                     </p>
                   </CardContent>
                 </Card>
@@ -311,9 +305,11 @@ export default function Portfolio() {
         <section id="contato" className="py-20 bg-background">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16 fade-in">
-              <h2 className="text-4xl font-bold mb-4">Contato</h2>
+              <h2 className="text-4xl font-bold mb-4">
+                {t("page.contact_title")}
+              </h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Vamos conversar! Estou sempre aberto a oportunidades.
+                {t("page.contact_description")}
               </p>
             </div>
           </div>
@@ -322,13 +318,13 @@ export default function Portfolio() {
 
       <footer className="bg-card text-card-foreground border-t border-border py-12 transition-colors">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between">
-          <p className="text-sm">© 2025 {portfolioData.nome}</p>
+          <p className="text-sm">© 2025 {t("portfolio.name")}</p>
           <button
             onClick={() => scrollToSection("sobre")}
             className="flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
           >
             <ChevronUp size={20} />
-            <span>Voltar ao topo</span>
+            <span>{t("page.back_to_top")}</span>
           </button>
         </div>
       </footer>

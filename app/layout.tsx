@@ -2,6 +2,7 @@ import type React from "react";
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
+import I18nProvider from "@/components/I18nProvider";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -21,7 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`${dmSans.variable} antialiased`}>
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        <I18nProvider>{children}</I18nProvider>
+      </body>
     </html>
   );
 }
