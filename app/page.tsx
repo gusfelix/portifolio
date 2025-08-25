@@ -1,5 +1,5 @@
 "use client";
-import "@/i18n";
+import "@/lib/i18n";
 
 import { useState, useEffect } from "react";
 import {
