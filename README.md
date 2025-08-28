@@ -1,7 +1,19 @@
 # Portfólio de Projetos
 
 ## Descrição do Projeto
-Este projeto é um portfólio desenvolvido em Next.js para apresentar trabalhos, experiências e habilidades do aluno. O objetivo é criar uma plataforma moderna, responsiva e de fácil navegação, destacando os principais projetos e informações relevantes.
+Este projeto é um portfólio moderno e responsivo desenvolvido em Next.js para apresentar trabalhos, experiências e habilidades. O objetivo é destacar os principais projetos e informações relevantes de forma intuitiva.
+
+## Tecnologias Utilizadas
+- Next.js
+- React
+- Tailwind CSS
+- TypeScript
+- Vercel (deploy)
+- i18next (internacionalização)
+- Radix UI
+
+## Link para o Site Publicado
+Acesse o portfólio online em: [https://portifolio-gules-iota-78.vercel.app/](https://portifolio-gules-iota-78.vercel.app/)
 
 ## Protótipos
 Sobre mim:
@@ -16,28 +28,31 @@ Experiência:
 Contato:
 ![4-contato](https://github.com/user-attachments/assets/d344790c-7c15-49a4-a766-dd3fd001e187)
 
+## Instruções de Uso
+1. Instale as dependências:
+   ```bash
+   npm install
+   # ou
+   pnpm install
+   ```
+2. Inicie o servidor de desenvolvimento:
+   ```bash
+   npm run dev
+   # ou
+   pnpm dev
+   ```
+3. Acesse [http://localhost:3000](http://localhost:3000) para visualizar o site localmente.
 
-## Tecnologias
-- Next.js
-- Tailwind CSS
-- Vercel (deploy)
-
-## Estrutura Inicial do Site
-- Home: Apresentação e destaque dos alunos
-- Projetos: Lista de projetos com detalhes
-- Sobre: Informações sobre o grupo
-- Contato: Formulário para contato
+## Instruções de Desenvolvimento
+- O projeto utiliza Next.js com TypeScript e Tailwind CSS para estilização.
+- Os textos e conteúdos são internacionalizados (pt/en) usando i18next.
+- Estrutura principal:
+  - Home: Apresentação dos alunos
+  - Projetos: Lista de projetos
+  - Sobre: Informações do grupo
+  - Contato: Formulário de contato
 
 ## Alunos
 - André Leoncio Jales
 - Gustavo Alvarenga Ribeiro Carvalho
 - Gustavo Pereira Felix
-
-## Como rodar o projeto
-
-```bash
-npm install
-npm run dev
-```
-
-Acesse [http://localhost:3000](http://localhost:3000) para visualizar.

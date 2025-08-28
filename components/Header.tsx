@@ -9,8 +9,8 @@ import {
   X,
 } from "lucide-react";
 import { useState, useEffect } from "react";
-
-import { portfolioData } from "@/utils/constants";
+import { useTranslation } from "react-i18next";
+import i18n from "@/lib/i18n";
 
 const Header = ({
   activeSection,
@@ -24,6 +24,8 @@ const Header = ({
   scrollToSection: (section: string) => void;
 }) => {
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const { t, i18n: i18next } = useTranslation("common");
+  const [lang, setLang] = useState(i18next.language || "pt");
 
   useEffect(() => {
     if (theme === "dark") {
@@ -32,6 +34,11 @@ const Header = ({
       document.documentElement.classList.remove("dark");
     }
   }, [theme]);
+
+  const handleChangeLang = (lng: string) => {
+    i18n.changeLanguage(lng);
+    setLang(lng);
+  };
 
   return (
     <header className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50 transition-colors">
@@ -42,16 +49,16 @@ const Header = ({
             onClick={() => scrollToSection("sobre")}
             className="text-2xl font-bold text-primary hover:text-primary/80 transition-colors"
           >
-            {portfolioData.nome.split(" ")[0]}
+            {t("portfolio.name").split(" ")[0]}
           </button>
 
           {/* Menu Desktop */}
-          <nav className="hidden md:flex space-x-6">
+          <nav className="hidden md:flex space-x-6 items-center">
             {[
-              { id: "sobre", label: "Sobre Mim", icon: User },
-              { id: "projetos", label: "Projetos", icon: Code },
-              { id: "experiencias", label: "Experiências", icon: Briefcase },
-              { id: "contato", label: "Contato", icon: MessageCircle },
+              { id: "sobre", label: t("header.menu.about"), icon: User },
+              { id: "projetos", label: t("header.menu.projects"), icon: Code },
+              { id: "experiencias", label: t("header.menu.experiences"), icon: Briefcase },
+              { id: "contato", label: t("header.menu.contact"), icon: MessageCircle },
             ].map(({ id, label, icon: Icon }) => (
               <button
                 key={id}
@@ -74,6 +81,15 @@ const Header = ({
             >
               {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
             </button>
+            {/* Botão idioma */}
+            <select
+              value={lang}
+              onChange={(e) => handleChangeLang(e.target.value)}
+              className="p-2 rounded-lg border border-border bg-background text-foreground focus:outline-none"
+            >
+              <option value="pt">{t("language.pt")}</option>
+              <option value="en">{t("language.en")}</option>
+            </select>
           </nav>
 
           {/* Menu Mobile */}
@@ -89,14 +105,10 @@ const Header = ({
           <div className="md:hidden py-4 border-t border-slate-200 dark:border-slate-700">
             <nav className="flex flex-col space-y-2">
               {[
-                { id: "sobre", label: "Sobre Mim", icon: User },
-                { id: "projetos", label: "Projetos", icon: Code },
-                {
-                  id: "experiencias",
-                  label: "Experiências",
-                  icon: Briefcase,
-                },
-                { id: "contato", label: "Contato", icon: MessageCircle },
+                { id: "sobre", label: t("header.menu.about"), icon: User },
+                { id: "projetos", label: t("header.menu.projects"), icon: Code },
+                { id: "experiencias", label: t("header.menu.experiences"), icon: Briefcase },
+                { id: "contato", label: t("header.menu.contact"), icon: MessageCircle },
               ].map(({ id, label, icon: Icon }) => (
                 <button
                   key={id}
@@ -120,6 +132,15 @@ const Header = ({
                 {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
                 <span>{theme === "light" ? "Modo Escuro" : "Modo Claro"}</span>
               </button>
+              {/* Botão idioma mobile */}
+              <select
+                value={lang}
+                onChange={(e) => handleChangeLang(e.target.value)}
+                className="flex items-center px-4 py-3 rounded-lg transition-colors text-left text-slate-600 dark:text-slate-300 border border-border bg-background focus:outline-none mt-2"
+              >
+                <option value="pt">{t("language.pt")}</option>
+                <option value="en">{t("language.en")}</option>
+              </select>
             </nav>
           </div>
         )}

@@ -1,0 +1,123 @@
+{
+  "header": {
+    "title": "Portfolio",
+    "subtitle": "Welcome to my portfolio",
+    "menu": {
+      "about": "About",
+      "projects": "Projects",
+      "experiences": "Experiences",
+      "contact": "Contact"
+    }
+  },
+  "page": {
+    "about_title": "About me",
+    "professional_info": "Professional Information",
+    "projects_title": "Projects",
+    "projects_description": "Some of the projects I've developed during my journey as a dev.",
+    "experiences_title": "Experiences",
+    "experiences_description": "My career journey.",
+    "contact_title": "Contact",
+    "contact_description": "Let's talk! I'm always open to opportunities.",
+    "back_to_top": "Back to top"
+  },
+  "language": {
+    "pt": "Portuguese",
+    "en": "English"
+  },
+  "portfolio": {
+    "name": "Your Name",
+    "role": "Your Role",
+    "bio": "Your biography text.",
+    "education": "Your academic background.",
+    "area": "Your area of expertise.",
+    "interests": ["Interest 1", "Interest 2", "Interest 3"],
+    "objectives": "Your professional objectives.",
+    "projects": [
+      {
+        "id": 1,
+        "name": "Project 1",
+        "description": "Description of project 1.",
+        "technologies": ["React", "Next.js"]
+      },
+      {
+        "id": 2,
+        "name": "Task Manager",
+        "description": "App to organize daily tasks with notifications.",
+        "technologies": ["Vue.js", "Firebase"]
+      },
+      {
+        "id": 3,
+        "name": "Recipe Site",
+        "description": "Collaborative platform to share cooking recipes.",
+        "technologies": ["Angular", "Node.js"]
+      },
+      {
+        "id": 4,
+        "name": "Finance Control",
+        "description": "System for personal expense control and report generation.",
+        "technologies": ["React", "Express"]
+      },
+      {
+        "id": 5,
+        "name": "Medical Scheduler",
+        "description": "App for online medical appointment scheduling.",
+        "technologies": ["Flutter", "Firebase"]
+      },
+      {
+        "id": 6,
+        "name": "Personal Blog",
+        "description": "Blog for publishing articles about technology and programming.",
+        "technologies": ["Gatsby", "GraphQL"]
+      }
+    ],
+    "experiences": [
+      {
+        "period": "2022-2023",
+        "company": "Company 1",
+        "role": "Role 1",
+        "description": "Description of experience 1."
+      },
+      {
+        "period": "2021-2022",
+        "company": "Tech Solutions",
+        "role": "Frontend Developer",
+        "description": "Developed responsive interfaces for international clients."
+      },
+      {
+        "period": "2020-2021",
+        "company": "InovaWeb",
+        "role": "IT Intern",
+        "description": "Supported internal system maintenance and technical support."
+      },
+      {
+        "period": "2019-2020",
+        "company": "StartUpX",
+        "role": "Mobile Developer",
+        "description": "Created mobile apps for Android and iOS."
+      },
+      {
+        "period": "2018-2019",
+        "company": "Digital Agency",
+        "role": "UI/UX Designer",
+        "description": "Designed prototypes and conducted usability testing."
+      },
+      {
+        "period": "2017-2018",
+        "company": "Freelancer",
+        "role": "Web Developer",
+        "description": "Independent projects for institutional websites."
+      }
+    ],
+    "education_label": "Education",
+    "area_label": "Area of expertise",
+    "interests_label": "Interests",
+    "contact": {
+      "success": "Message sent successfully!",
+      "error": "Error sending message. Please try again.",
+      "loading": "Sending...",
+      "name_placeholder": "Your name",
+      "email_placeholder": "Your email",
+      "message_placeholder": "Your message"
+    }
+  }
+}
