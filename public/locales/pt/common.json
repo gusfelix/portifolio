@@ -110,6 +110,14 @@
     ],
     "education_label": "Formação",
     "area_label": "Área de atuação",
-    "interests_label": "Interesses"
+    "interests_label": "Interesses",
+    "contact": {
+      "success": "Mensagem enviada com sucesso!",
+      "error": "Erro ao enviar mensagem. Tente novamente.",
+      "loading": "Enviando...",
+      "name_placeholder": "Seu nome",
+      "email_placeholder": "Seu e-mail",
+      "message_placeholder": "Sua mensagem"
+    }
   }
 }

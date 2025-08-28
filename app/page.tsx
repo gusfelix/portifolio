@@ -36,6 +36,8 @@ export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("sobre");
   const { t } = useTranslation("common");
+  const [formStatus, setFormStatus] = useState<null | "success" | "error" | "loading">(null);
+  const [formMessage, setFormMessage] = useState("");
 
   // Scroll suave
   const scrollToSection = (sectionId: string) => {
@@ -311,6 +313,63 @@ export default function Portfolio() {
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                 {t("page.contact_description")}
               </p>
+            </div>
+            {/* Formulário de contato */}
+            <div className="max-w-xl mx-auto fade-in">
+              <form
+                className="space-y-6"
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  setFormStatus("loading");
+                  setFormMessage("");
+                  const formData = new FormData(e.currentTarget);
+                  const name = formData.get("name") as string;
+                  const email = formData.get("email") as string;
+                  const message = formData.get("message") as string;
+                  try {
+                    const res = await fetch("/api/send-email", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ name, email, message }),
+                    });
+                    if (res.ok) {
+                      setFormStatus("success");
+                      setFormMessage("Mensagem enviada com sucesso!");
+                      e.currentTarget.reset();
+                    } else {
+                      setFormStatus("error");
+                      setFormMessage("Erro ao enviar mensagem. Tente novamente.");
+                    }
+                  } catch {
+                    setFormStatus("error");
+                    setFormMessage("Erro ao enviar mensagem. Tente novamente.");
+                  }
+                }}
+              >
+                <Input name="name" placeholder={t("portfolio.contact.name_placeholder")} required />
+                <Input name="email" type="email" placeholder={t("portfolio.contact.email_placeholder")} required />
+                <Textarea name="message" placeholder={t("portfolio.contact.message_placeholder")} required rows={5} />
+                <Button type="submit" className="w-full" disabled={formStatus === "loading"}>
+                  {formStatus === "loading" ? t("portfolio.contact.loading") : t("header.menu.contact")}
+                </Button>
+                {formStatus && (
+                  <div
+                    className={`mt-2 text-center text-sm ${
+                      formStatus === "success"
+                        ? "text-green-600"
+                        : formStatus === "error"
+                        ? "text-red-600"
+                        : "text-muted-foreground"
+                    }`}
+                  >
+                    {formStatus === "success"
+                      ? t("portfolio.contact.success")
+                      : formStatus === "error"
+                      ? t("portfolio.contact.error")
+                      : ""}
+                  </div>
+                )}
+              </form>
             </div>
           </div>
         </section>
