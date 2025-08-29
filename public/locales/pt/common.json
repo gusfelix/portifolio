@@ -25,13 +25,13 @@
     "en": "English"
   },
   "portfolio": {
-    "name": "Seu Nome",
-    "role": "Seu Cargo",
-    "bio": "Texto da sua biografia.",
-    "education": "Sua formação acadêmica.",
-    "area": "Sua área de atuação.",
-    "interests": ["Interesse 1", "Interesse 2", "Interesse 3"],
-    "objectives": "Seus objetivos profissionais.",
+    "name": "Gustavo Felix",
+    "role": "Desenvolvedor",
+    "bio": "Olá, meu nome é Gustavo. Sou fascinado por tecnologia e sempre ansioso para aprender coisas novas.",
+    "education": "Técnico em Desenvolvimento de Sistemas pelo SENAI e atualmente cursando Engenharia de Software na PUC Minas.",
+    "area": "Desenvolvimento de Software",
+    "interests": ["Back-end", "Banco de dados", "Automação de processos", "Ciência de dados"],
+    "objectives": "",
     "projects": [
       {
         "id": 1,
@@ -53,59 +53,23 @@
       },
       {
         "id": 4,
-        "name": "Controle Financeiro",
-        "description": "Sistema para controle de despesas pessoais e geração de relatórios.",
-        "technologies": ["React", "Express"]
-      },
-      {
-        "id": 5,
-        "name": "Agenda Médica",
-        "description": "Aplicativo para agendamento de consultas médicas online.",
-        "technologies": ["Flutter", "Firebase"]
-      },
-      {
-        "id": 6,
-        "name": "Blog Pessoal",
-        "description": "Blog para publicação de artigos sobre tecnologia e programação.",
-        "technologies": ["Gatsby", "GraphQL"]
+        "name": "Letrux",
+        "description": "O primeiro projeto que eu fiz. É um jogo baseado no Term.ooo de adivinhação de palavras",
+        "technologies": ["HTML", "CSS", "JS"]
       }
     ],
     "experiences": [
       {
-        "period": "2022-2023",
-        "company": "Empresa 1",
-        "role": "Cargo 1",
-        "description": "Descrição da experiência 1."
+        "period": "2024-hoje",
+        "company": "Strata Engenharia",
+        "role": "Estagiário",
+        "description": "Manutenção e desenvolvimento de novas features para sistemas internos da empresa. Alguns dos sitemas utilizam PHP com Laravel e outros usam Next.js"
       },
       {
-        "period": "2021-2022",
-        "company": "Tech Solutions",
-        "role": "Desenvolvedor Frontend",
-        "description": "Desenvolvimento de interfaces responsivas para clientes internacionais."
-      },
-      {
-        "period": "2020-2021",
-        "company": "InovaWeb",
-        "role": "Estagiário de TI",
-        "description": "Apoio na manutenção de sistemas internos e suporte técnico."
-      },
-      {
-        "period": "2019-2020",
-        "company": "StartUpX",
-        "role": "Desenvolvedor Mobile",
-        "description": "Criação de aplicativos móveis para Android e iOS."
-      },
-      {
-        "period": "2018-2019",
-        "company": "Agência Digital",
-        "role": "Designer UI/UX",
-        "description": "Elaboração de protótipos e testes de usabilidade."
-      },
-      {
-        "period": "2017-2018",
-        "company": "Freelancer",
-        "role": "Desenvolvedor Web",
-        "description": "Projetos independentes de sites institucionais."
+        "period": "2022-hoje",
+        "company": "Smart Leilões",
+        "role": "Desenvolvedor",
+        "description": "Automação de processo usando Python e Google Cloud."
       }
     ],
     "education_label": "Formação",
